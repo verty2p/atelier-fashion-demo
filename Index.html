@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Site demonstrativo de uma marca de moda contemporânea.">
+  <title>STUDIO — Moda Contemporânea</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: "#171717",
+            cream: "#f4f0e9",
+            gold: "#b08a57"
+          },
+          fontFamily: {
+            display: ["Playfair Display", "serif"],
+            sans: ["Inter", "sans-serif"]
+          }
+        }
+      }
+    }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Inter, sans-serif;
+    }
+
+    .display {
+      font-family: "Playfair Display", serif;
+    }
+
+    .product-card {
+      transition:
+        transform .35s ease,
+        box-shadow .35s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 45px rgba(0,0,0,.08);
+    }
+
+    .product-card img {
+      transition: transform .7s ease;
+    }
+
+    .product-card:hover img {
+      transform: scale(1.06);
+    }
+
+    .fade {
+      opacity: 0;
+      transform: translateY(25px);
+      transition: .7s ease;
+    }
+
+    .fade.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    #mobileMenu {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .35s ease;
+    }
+
+    #mobileMenu.open {
+      max-height: 400px;
+    }
+
+    #productModal {
+      opacity: 0;
+      visibility: hidden;
+      transition: .25s ease;
+    }
+
+    #productModal.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    #productModal .modal-content {
+      transform: translateY(20px);
+      transition: .25s ease;
+    }
+
+    #productModal.open .modal-content {
+      transform: translateY(0);
+    }
+  </style>
+</head>
+
+<body class="bg-white text-ink">
+
+<!-- HEADER -->
+
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-black/10">
+
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+
+    <div class="h-20 flex items-center justify-between">
+
+      <a href="#inicio"
+         class="display text-2xl tracking-[.15em]">
+        STUDIO
+      </a>
+
+      <!-- DESKTOP MENU -->
+
+      <nav class="hidden md:flex items-center gap-8 text-[11px] uppercase tracking-[.18em]">
+
+        <a href="#inicio" class="hover:text-gold transition">
+          Início
+        </a>
+
+        <a href="#catalogo" class="hover:text-gold transition">
+          Catálogo
+        </a>
+
+        <a href="#editorial" class="hover:text-gold transition">
+          Editorial
+        </a>
+
+        <a href="#sobre" class="hover:text-gold transition">
+          Sobre
+        </a>
+
+        <a href="#contato" class="hover:text-gold transition">
+          Contato
+        </a>
+
+      </nav>
+
+      <!-- MOBILE BUTTON -->
+
+      <button
+        id="menuButton"
+        class="md:hidden w-11 h-11 border border-black/10 rounded-full flex items-center justify-center"
+        aria-label="Abrir menu">
+
+        <span class="text-xl">☰</span>
+
+      </button>
+
+    </div>
+
+    <!-- MOBILE MENU -->
+
+    <nav id="mobileMenu" class="md:hidden">
+
+      <div class="py-4 flex flex-col text-sm border-t border-black/10">
+
+        <a href="#inicio" class="py-3">
+          Início
+        </a>
+
+        <a href="#catalogo" class="py-3">
+          Catálogo
+        </a>
+
+        <a href="#editorial" class="py-3">
+          Editorial
+        </a>
+
+        <a href="#sobre" class="py-3">
+          Sobre
+        </a>
+
+        <a href="#contato" class="py-3">
+          Contato
+        </a>
+
+      </div>
+
+    </nav>
+
+  </div>
+
+</header>
+
+
+<main>
+
+<!-- HERO -->
+
+<section id="inicio" class="pt-20 bg-cream">
+
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 py-10 md:py-16">
+
+    <div class="grid lg:grid-cols-2 gap-8 items-center">
+
+      <!-- IMAGE -->
+
+      <div class="relative h-[520px] md:h-[650px] overflow-hidden">
+
+        <img
+          src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=1400&q=85"
+          alt="Editorial de moda"
+          class="w-full h-full object-cover">
+
+        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+
+        <div class="absolute bottom-8 left-8 text-white">
+
+          <p class="text-[10px] uppercase tracking-[.3em]">
+            Nova coleção
+          </p>
+
+          <p class="display text-3xl mt-2">
+            Essenciais
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <!-- TEXT -->
+
+      <div class="py-10 lg:px-10">
+
+        <p class="text-[10px] uppercase tracking-[.3em] text-gold">
+          Coleção 2026
+        </p>
+
+        <h1 class="display text-6xl sm:text-7xl lg:text-[6.5rem] leading-[.88] mt-5">
+          Vista o que
+          <br>
+          <i>representa</i>
+          <br>
+          você.
+        </h1>
+
+        <p class="mt-8 max-w-lg text-sm sm:text-base leading-7 text-black/60">
+
+          Moda contemporânea pensada para quem busca
+          personalidade, elegância e autenticidade em cada detalhe.
+
+        </p>
+
+        <div class="mt-9 flex flex-wrap gap-3">
+
+          <a
+            href="#catalogo"
+            class="bg-ink text-white px-7 py-4 text-[11px] uppercase tracking-[.18em] hover:bg-gold transition">
+
+            Ver coleção
+
+          </a>
+
+          <a
+            href="#editorial"
+            class="border border-black/20 px-7 py-4 text-[11px] uppercase tracking-[.18em] hover:bg-white transition">
+
+            Editorial
+
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- CATEGORIAS -->
+
+<section class="py-16 border-b border-black/10">
+
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+
+      <a href="#catalogo"
+         data-category-link="feminino"
+         class="group relative h-48 overflow-hidden">
+
+        <img
+          src="https://images.unsplash.com/photo-1539008835657-9e8e9680c956?auto=format&fit=crop&w=700&q=80"
+          class="w-full h-full object-cover group-hover:scale-105 transition duration-700"
+          alt="Moda feminina">
+
+        <div class="absolute inset-0 bg-black/30 flex items-end p-5">
+
+          <span class="text-white text-xs uppercase tracking-[.18em]">
+            Feminino
+          </span>
+
+        </div>
+
+      </a>
+
+
+      <a href="#catalogo"
+         data-category-link="masculino"
+         class="group relative h-48 overflow-hidden">
+
+        <img
+          src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=700&q=80"
+          class="w-full h-full object-cover group-hover:scale-105 transition duration-700"
+          alt="Moda masculina">
+
+        <div class="absolute inset-0 bg-black/30 flex items-end p-5">
+
+          <span class="text-white text-xs uppercase tracking-[.18em]">
+            Masculino
+          </span>
+
+        </div>
+
+      </a>
+
+
+      <a href="#catalogo"
+         data-category-link="vestidos"
+         class="group relative h-48 overflow-hidden">
+
+        <img
+          src="https://images.unsplash.com/photo-1496217590455-aa63a8350eea?auto=format&fit=crop&w=700&q=80"
+          class="w-full h-full object-cover group-hover:scale-105 transition duration-700"
+          alt="Vestidos">
+
+        <div class="absolute inset-0 bg-black/30 flex items-end p-5">
+
+          <span class="text-white text-xs uppercase tracking-[.18em]">
+            Vestidos
+          </span>
+
+        </div>
+
+      </a>
+
+
+      <a href="#catalogo"
+         data-category-link="acessorios"
+         class="group relative h-48 overflow-hidden">
+
+        <img
+          src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&w=700&q=80"
+          class="w-full h-full object-cover group-hover:scale-105 transition duration-700"
+          alt="Acessórios">
+
+        <div class="absolute inset-0 bg-black/30 flex items-end p-5">
+
+          <span class="text-white text-xs uppercase tracking-[.18em]">
+            Acessórios
+          </span>
+
+        </div>
+
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- CATÁLOGO -->
+
+<section id="catalogo" class="py-24 md:py-32">
+
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 fade">
+
+      <div>
+
+        <p class="text-[10px] uppercase tracking-[.3em] text-gold">
+          Seleção
+        </p>
+
+        <h2 class="display text-5xl sm:text-6xl mt-3">
+          Catálogo
+        </h2>
+
+      </div>
+
+      <p class="max-w-md text-sm leading-6 text-black/55">
+
+        Produtos demonstrativos. O catálogo pode ser
+        completamente substituído pelas peças reais do cliente.
+
+      </p>
+
+    </div>
+
+
+    <!-- FILTERS -->
+
+    <div class="flex gap-2 overflow-x-auto pb-4 mb-10">
+
+      <button data-filter="todos"
+        class="filter active whitespace-nowrap px-5 py-3 rounded-full bg-ink text-white text-[10px] uppercase tracking-[.16em]">
+
+        Todos
+
+      </button>
+
+      <button data-filter="feminino"
+        class="filter whitespace-nowrap px-5 py-3 rounded-full border border-black/15 text-[10px] uppercase tracking-[.16em]">
+
+        Feminino
+
+      </button>
+
+      <button data-filter="masculino"
+        class="filter whitespace-nowrap px-5 py-3 rounded-full border border-black/15 text-[10px] uppercase tracking-[.16em]">
+
+        Masculino
+
+      </button>
+
+      <button data-filter="vestidos"
+        class="filter whitespace-nowrap px-5 py-3 rounded-full border border-black/15 text-[10px] uppercase tracking-[.16em]">
+
+        Vestidos
+
+      </button>
+
+      <button data-filter="camisas"
+        class="filter whitespace-nowrap px-5 py-3 rounded-full border border-black/15 text-[10px] uppercase tracking-[.16em]">
+
+        Camisas
+
+      </button>
+
+      <button data-filter="calcas"
+        class="filter whitespace-nowrap px-5 py-3 rounded-full border border-black/15 text-[10px] uppercase tracking-[.16em]">
+
+        Calças
+
+      </button>
+
+      <button data-filter="acessorios"
+        class="filter whitespace-nowrap px-5 py-3 rounded-full border border-black/15 text-[10px] uppercase tracking-[.16em]">
+
+        Acessórios
+
+      </button>
+
+    </div>
+
+
+    <!-- SEARCH -->
+
+    <div class="mb-10">
+
+      <input
+        id="search"
+        type="search"
+        placeholder="Buscar produto..."
+        class="w-full border-b border-black/20 py-4 outline-none focus:border-gold transition text-sm">
+
+    </div>
+
+
+    <!-- PRODUCTS -->
+
+    <div
+      id="products"
+      class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-12">
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- EDITORIAL -->
+
+<section id="editorial" class="bg-ink text-white py-24 md:py-32">
+
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+
+    <div class="flex items-end justify-between mb-12">
+
+      <div>
+
+        <p class="text-[10px] uppercase tracking-[.3em] text-[#c5a36d]">
+          Editorial
+        </p>
+
+        <h2 class="display text-5xl sm:text-6xl mt-3">
+          Lookbook
+        </h2>
+
+      </div>
+
+      <p class="hidden md:block text-sm text-white/50 max-w-xs">
+        Uma direção visual para apresentar a identidade da marca.
+      </p>
+
+    </div>
+
+
+    <div class="grid md:grid-cols-12 gap-5">
+
+      <div class="md:col-span-7 h-[520px] md:h-[680px] overflow-hidden">
+
+        <img
+          src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1400&q=85"
+          class="w-full h-full object-cover hover:scale-105 transition duration-700"
+          alt="Editorial de moda">
+
+      </div>
+
+
+      <div class="md:col-span-5 grid gap-5">
+
+        <div class="h-[300px] md:h-[390px] overflow-hidden">
+
+          <img
+            src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1000&q=85"
+            class="w-full h-full object-cover hover:scale-105 transition duration-700"
+            alt="Moda contemporânea">
+
+        </div>
+
+
+        <div class="bg-[#242424] p-8 flex flex-col justify-end">
+
+          <p class="text-[10px] uppercase tracking-[.25em] text-[#c5a36d]">
+            Conceito
+          </p>
+
+          <p class="display text-3xl mt-4">
+            Menos tendência.
+            <br>
+            <i>Mais identidade.</i>
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- DESTAQUE -->
+
+<section class="py-24 md:py-32 bg-cream">
+
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+
+      <div class="fade">
+
+        <p class="text-[10px] uppercase tracking-[.3em] text-gold">
+          Destaque
+        </p>
+
+        <h2 class="display text-5xl sm:text-6xl mt-4">
+          Uma peça.
+          <br>
+          <i>Uma presença.</i>
+        </h2>
+
+        <p class="mt-7 text-sm leading-7 text-black/60 max-w-lg">
+
+          Uma apresentação visual elegante para destacar
+          uma peça, coleção ou campanha especial.
+
+        </p>
+
+        <a
+          href="#catalogo"
+          class="inline-block mt-8 bg-ink text-white px-7 py-4 text-[11px] uppercase tracking-[.18em] hover:bg-gold transition">
+
+          Ver catálogo
+
+        </a>
+
+      </div>
+
+
+      <div class="h-[500px] overflow-hidden">
+
+        <img
+          src="https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=1200&q=85"
+          class="w-full h-full object-cover"
+          alt="Peça de moda">
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- SOBRE -->
+
+<section id="sobre" class="py-24 md:py-32">
+
+  <div class="max-w-5xl mx-auto px-5 sm:px-8 text-center">
+
+    <p class="text-[10px] uppercase tracking-[.3em] text-gold">
+      Sobre
+    </p>
+
+    <h2 class="display text-5xl sm:text-6xl mt-4">
+      Moda com intenção.
+    </h2>
+
+    <p class="max-w-2xl mx-auto mt-7 text-sm sm:text-base leading-7 text-black/55">
+
+      Este é um site demonstrativo criado para apresentar
+      uma possível identidade digital para uma loja de roupas.
+      Todos os textos, produtos e informações são fictícios.
+
+    </p>
+
+
+    <div class="grid sm:grid-cols-3 gap-5 mt-14 text-left">
+
+      <div class="border-t border-black/15 pt-5">
+
+        <p class="display text-3xl">
+          01
+        </p>
+
+        <p class="text-xs uppercase tracking-[.15em] mt-3">
+          Design autoral
+        </p>
+
+      </div>
+
+
+      <div class="border-t border-black/15 pt-5">
+
+        <p class="display text-3xl">
+          02
+        </p>
+
+        <p class="text-xs uppercase tracking-[.15em] mt-3">
+          Experiência
+        </p>
+
+      </div>
+
+
+      <div class="border-t border-black/15 pt-5">
+
+        <p class="display text-3xl">
+          03
+        </p>
+
+        <p class="text-xs uppercase tracking-[.15em] mt-3">
+          Identidade
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- CTA -->
+
+<section id="contato" class="bg-ink text-white py-24 md:py-32">
+
+  <div class="max-w-4xl mx-auto px-5 sm:px-8 text-center">
+
+    <p class="text-[10px] uppercase tracking-[.3em] text-[#c5a36d]">
+      Coleção
+    </p>
+
+    <h2 class="display text-5xl sm:text-7xl mt-4">
+
+      Encontre seu
+      <br>
+      <i>próximo look.</i>
+
+    </h2>
+
+    <p class="max-w-lg mx-auto mt-6 text-sm leading-6 text-white/55">
+
+      Uma área pronta para receber o WhatsApp,
+      Instagram ou outro canal de atendimento do cliente.
+
+    </p>
+
+    <a
+      href="#catalogo"
+      class="inline-block mt-9 bg-white text-ink px-8 py-4 text-[11px] uppercase tracking-[.18em] hover:bg-[#c5a36d] transition">
+
+      Explorar catálogo
+
+    </a>
+
+  </div>
+
+</section>
+
+</main>
+
+
+<!-- FOOTER -->
+
+<footer class="border-t border-black/10 bg-white">
+
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 py-12">
+
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-8">
+
+      <div>
+
+        <p class="display text-2xl tracking-[.15em]">
+          STUDIO
+        </p>
+
+        <p class="text-xs text-black/45 mt-3">
+          Site demonstrativo.
+        </p>
+
+      </div>
+
+
+      <div class="flex flex-wrap gap-6 text-[10px] uppercase tracking-[.16em]">
+
+        <a href="#catalogo" class="hover:text-gold">
+          Catálogo
+        </a>
+
+        <a href="#editorial" class="hover:text-gold">
+          Editorial
+        </a>
+
+        <a href="#sobre" class="hover:text-gold">
+          Sobre
+        </a>
+
+        <a href="#inicio" class="hover:text-gold">
+          Voltar ao topo
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <div class="mt-10 pt-5 border-t border-black/10 text-[10px] uppercase tracking-[.16em] text-black/40">
+
+      © 2026 STUDIO — Demonstração
+
+    </div>
+
+  </div>
+
+</footer>
+
+
+<!-- MODAL DO PRODUTO -->
+
+<div
+  id="productModal"
+  class="fixed inset-0 z-[100] bg-black/70 p-4 flex items-center justify-center">
+
+  <div class="modal-content bg-white max-w-3xl w-full max-h-[90vh] overflow-auto">
+
+    <div class="grid md:grid-cols-2">
+
+      <img
+        id="modalImage"
+        class="w-full h-80 md:h-full object-cover"
+        src=""
+        alt="">
+
+      <div class="p-7 md:p-10">
+
+        <button
+          id="closeModal"
+          class="float-right w-9 h-9 rounded-full border border-black/10 text-lg">
+
+          ×
+
+        </button>
+
+        <p
+          id="modalCategory"
+          class="text-[10px] uppercase tracking-[.25em] text-gold pt-1">
+        </p>
+
+        <h3
+          id="modalName"
+          class="display text-4xl mt-4">
+        </h3>
+
+        <p
+          id="modalDescription"
+          class="text-sm leading-7 text-black/55 mt-5">
+        </p>
+
+        <p class="text-xs text-black/40 mt-8 border-t border-black/10 pt-5">
+          Produto demonstrativo. As informações podem ser substituídas
+          pelo catálogo real da empresa.
+        </p>
+
+        <button
+          id="closeModalBottom"
+          class="mt-8 w-full bg-ink text-white py-4 text-[10px] uppercase tracking-[.18em]">
+
+          Voltar ao catálogo
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<script>
+
+/* =========================
+   PRODUTOS
+========================= */
+
+const products = [
+
+  {
+    name: "Camisa Essencial",
+    category: "camisas",
+    group: "feminino",
+    image: "https://images.unsplash.com/photo-1596755389378-c31d21fd1273?auto=format&fit=crop&w=800&q=80",
+    description: "Camisa de corte elegante e acabamento minimalista."
+  },
+
+  {
+    name: "Vestido Noir",
+    category: "vestidos",
+    group: "feminino",
+    image: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=800&q=80",
+    description: "Vestido sofisticado com silhueta contemporânea."
+  },
+
+  {
+    name: "Calça Tailoring",
+    category: "calcas",
+    group: "masculino",
+    image: "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=800&q=80",
+    description: "Alfaiataria contemporânea com corte preciso."
+  },
+
+  {
+    name: "Jaqueta Studio",
+    category: "masculino",
+    group: "masculino",
+    image: "https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=800&q=80",
+    description: "Jaqueta estruturada com estética urbana."
+  },
+
+  {
+    name: "Vestido Sculpt",
+    category: "vestidos",
+    group: "feminino",
+    image: "https://images.unsplash.com/photo-1539008835657-9e8e9680c956?auto=format&fit=crop&w=800&q=80",
+    description: "Modelagem marcante para ocasiões especiais."
+  },
+
+  {
+    name: "Camisa Soft",
+    category: "camisas",
+    group: "feminino",
+    image: "https://images.unsplash.com/photo-1605763240000-7e93b172d754?auto=format&fit=crop&w=800&q=80",
+    description: "P
