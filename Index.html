@@ -3,11 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Site demonstrativo de uma marca de moda contemporânea.">
+
+  <meta
+    name="description"
+    content="Site demonstrativo de uma marca de moda contemporânea."
+  >
+
   <title>STUDIO — Moda Contemporânea</title>
 
+  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
 
+  <!-- Configuração -->
   <script>
     tailwind.config = {
       theme: {
@@ -23,12 +30,17 @@
           }
         }
       }
-    }
+    };
   </script>
 
+  <!-- Fontes -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap"
+    rel="stylesheet"
+  >
 
   <style>
     html {
@@ -102,12 +114,24 @@
     #productModal.open .modal-content {
       transform: translateY(0);
     }
+
+    .filter.active {
+      background: #171717;
+      color: white;
+      border-color: #171717;
+    }
+
+    .no-scroll {
+      overflow: hidden;
+    }
   </style>
 </head>
 
 <body class="bg-white text-ink">
 
-<!-- HEADER -->
+<!-- =====================================================
+     HEADER
+===================================================== -->
 
 <header class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-black/10">
 
@@ -115,12 +139,14 @@
 
     <div class="h-20 flex items-center justify-between">
 
-      <a href="#inicio"
-         class="display text-2xl tracking-[.15em]">
+      <a
+        href="#inicio"
+        class="display text-2xl tracking-[.15em]"
+      >
         STUDIO
       </a>
 
-      <!-- DESKTOP MENU -->
+      <!-- DESKTOP -->
 
       <nav class="hidden md:flex items-center gap-8 text-[11px] uppercase tracking-[.18em]">
 
@@ -146,15 +172,16 @@
 
       </nav>
 
-      <!-- MOBILE BUTTON -->
+      <!-- MOBILE -->
 
       <button
         id="menuButton"
+        type="button"
         class="md:hidden w-11 h-11 border border-black/10 rounded-full flex items-center justify-center"
-        aria-label="Abrir menu">
-
+        aria-label="Abrir menu"
+        aria-expanded="false"
+      >
         <span class="text-xl">☰</span>
-
       </button>
 
     </div>
@@ -165,23 +192,23 @@
 
       <div class="py-4 flex flex-col text-sm border-t border-black/10">
 
-        <a href="#inicio" class="py-3">
+        <a href="#inicio" class="py-3 mobile-link">
           Início
         </a>
 
-        <a href="#catalogo" class="py-3">
+        <a href="#catalogo" class="py-3 mobile-link">
           Catálogo
         </a>
 
-        <a href="#editorial" class="py-3">
+        <a href="#editorial" class="py-3 mobile-link">
           Editorial
         </a>
 
-        <a href="#sobre" class="py-3">
+        <a href="#sobre" class="py-3 mobile-link">
           Sobre
         </a>
 
-        <a href="#contato" class="py-3">
+        <a href="#contato" class="py-3 mobile-link">
           Contato
         </a>
 
@@ -196,7 +223,9 @@
 
 <main>
 
-<!-- HERO -->
+<!-- =====================================================
+     HERO
+===================================================== -->
 
 <section id="inicio" class="pt-20 bg-cream">
 
@@ -204,14 +233,13 @@
 
     <div class="grid lg:grid-cols-2 gap-8 items-center">
 
-      <!-- IMAGE -->
-
       <div class="relative h-[520px] md:h-[650px] overflow-hidden">
 
         <img
           src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=1400&q=85"
           alt="Editorial de moda"
-          class="w-full h-full object-cover">
+          class="w-full h-full object-cover"
+        >
 
         <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
 
@@ -230,8 +258,6 @@
       </div>
 
 
-      <!-- TEXT -->
-
       <div class="py-10 lg:px-10">
 
         <p class="text-[10px] uppercase tracking-[.3em] text-gold">
@@ -239,11 +265,13 @@
         </p>
 
         <h1 class="display text-6xl sm:text-7xl lg:text-[6.5rem] leading-[.88] mt-5">
+
           Vista o que
           <br>
           <i>representa</i>
           <br>
           você.
+
         </h1>
 
         <p class="mt-8 max-w-lg text-sm sm:text-base leading-7 text-black/60">
@@ -257,18 +285,16 @@
 
           <a
             href="#catalogo"
-            class="bg-ink text-white px-7 py-4 text-[11px] uppercase tracking-[.18em] hover:bg-gold transition">
-
+            class="bg-ink text-white px-7 py-4 text-[11px] uppercase tracking-[.18em] hover:bg-gold transition"
+          >
             Ver coleção
-
           </a>
 
           <a
             href="#editorial"
-            class="border border-black/20 px-7 py-4 text-[11px] uppercase tracking-[.18em] hover:bg-white transition">
-
+            class="border border-black/20 px-7 py-4 text-[11px] uppercase tracking-[.18em] hover:bg-white transition"
+          >
             Editorial
-
           </a>
 
         </div>
@@ -282,7 +308,9 @@
 </section>
 
 
-<!-- CATEGORIAS -->
+<!-- =====================================================
+     CATEGORIAS
+===================================================== -->
 
 <section class="py-16 border-b border-black/10">
 
@@ -290,14 +318,17 @@
 
     <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
 
-      <a href="#catalogo"
-         data-category-link="feminino"
-         class="group relative h-48 overflow-hidden">
+      <a
+        href="#catalogo"
+        data-category-link="feminino"
+        class="group relative h-48 overflow-hidden"
+      >
 
         <img
           src="https://images.unsplash.com/photo-1539008835657-9e8e9680c956?auto=format&fit=crop&w=700&q=80"
           class="w-full h-full object-cover group-hover:scale-105 transition duration-700"
-          alt="Moda feminina">
+          alt="Moda feminina"
+        >
 
         <div class="absolute inset-0 bg-black/30 flex items-end p-5">
 
@@ -310,14 +341,17 @@
       </a>
 
 
-      <a href="#catalogo"
-         data-category-link="masculino"
-         class="group relative h-48 overflow-hidden">
+      <a
+        href="#catalogo"
+        data-category-link="masculino"
+        class="group relative h-48 overflow-hidden"
+      >
 
         <img
           src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=700&q=80"
           class="w-full h-full object-cover group-hover:scale-105 transition duration-700"
-          alt="Moda masculina">
+          alt="Moda masculina"
+        >
 
         <div class="absolute inset-0 bg-black/30 flex items-end p-5">
 
@@ -330,14 +364,17 @@
       </a>
 
 
-      <a href="#catalogo"
-         data-category-link="vestidos"
-         class="group relative h-48 overflow-hidden">
+      <a
+        href="#catalogo"
+        data-category-link="vestidos"
+        class="group relative h-48 overflow-hidden"
+      >
 
         <img
           src="https://images.unsplash.com/photo-1496217590455-aa63a8350eea?auto=format&fit=crop&w=700&q=80"
           class="w-full h-full object-cover group-hover:scale-105 transition duration-700"
-          alt="Vestidos">
+          alt="Vestidos"
+        >
 
         <div class="absolute inset-0 bg-black/30 flex items-end p-5">
 
@@ -350,14 +387,17 @@
       </a>
 
 
-      <a href="#catalogo"
-         data-category-link="acessorios"
-         class="group relative h-48 overflow-hidden">
+      <a
+        href="#catalogo"
+        data-category-link="acessorios"
+        class="group relative h-48 overflow-hidden"
+      >
 
         <img
           src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&w=700&q=80"
           class="w-full h-full object-cover group-hover:scale-105 transition duration-700"
-          alt="Acessórios">
+          alt="Acessórios"
+        >
 
         <div class="absolute inset-0 bg-black/30 flex items-end p-5">
 
@@ -376,7 +416,9 @@
 </section>
 
 
-<!-- CATÁLOGO -->
+<!-- =====================================================
+     CATÁLOGO
+===================================================== -->
 
 <section id="catalogo" class="py-24 md:py-32">
 
@@ -406,63 +448,42 @@
     </div>
 
 
-    <!-- FILTERS -->
+    <!-- FILTROS -->
 
     <div class="flex gap-2 overflow-x-auto pb-4 mb-10">
 
-      <button data-filter="todos"
-        class="filter active whitespace-nowrap px-5 py-3 rounded-full bg-ink text-white text-[10px] uppercase tracking-[.16em]">
-
+      <button data-filter="todos" class="filter active whitespace-nowrap px-5 py-3 rounded-full border border-black/15 text-[10px] uppercase tracking-[.16em]">
         Todos
-
       </button>
 
-      <button data-filter="feminino"
-        class="filter whitespace-nowrap px-5 py-3 rounded-full border border-black/15 text-[10px] uppercase tracking-[.16em]">
-
+      <button data-filter="feminino" class="filter whitespace-nowrap px-5 py-3 rounded-full border border-black/15 text-[10px] uppercase tracking-[.16em]">
         Feminino
-
       </button>
 
-      <button data-filter="masculino"
-        class="filter whitespace-nowrap px-5 py-3 rounded-full border border-black/15 text-[10px] uppercase tracking-[.16em]">
-
+      <button data-filter="masculino" class="filter whitespace-nowrap px-5 py-3 rounded-full border border-black/15 text-[10px] uppercase tracking-[.16em]">
         Masculino
-
       </button>
 
-      <button data-filter="vestidos"
-        class="filter whitespace-nowrap px-5 py-3 rounded-full border border-black/15 text-[10px] uppercase tracking-[.16em]">
-
+      <button data-filter="vestidos" class="filter whitespace-nowrap px-5 py-3 rounded-full border border-black/15 text-[10px] uppercase tracking-[.16em]">
         Vestidos
-
       </button>
 
-      <button data-filter="camisas"
-        class="filter whitespace-nowrap px-5 py-3 rounded-full border border-black/15 text-[10px] uppercase tracking-[.16em]">
-
+      <button data-filter="camisas" class="filter whitespace-nowrap px-5 py-3 rounded-full border border-black/15 text-[10px] uppercase tracking-[.16em]">
         Camisas
-
       </button>
 
-      <button data-filter="calcas"
-        class="filter whitespace-nowrap px-5 py-3 rounded-full border border-black/15 text-[10px] uppercase tracking-[.16em]">
-
+      <button data-filter="calcas" class="filter whitespace-nowrap px-5 py-3 rounded-full border border-black/15 text-[10px] uppercase tracking-[.16em]">
         Calças
-
       </button>
 
-      <button data-filter="acessorios"
-        class="filter whitespace-nowrap px-5 py-3 rounded-full border border-black/15 text-[10px] uppercase tracking-[.16em]">
-
+      <button data-filter="acessorios" class="filter whitespace-nowrap px-5 py-3 rounded-full border border-black/15 text-[10px] uppercase tracking-[.16em]">
         Acessórios
-
       </button>
 
     </div>
 
 
-    <!-- SEARCH -->
+    <!-- BUSCA -->
 
     <div class="mb-10">
 
@@ -470,25 +491,34 @@
         id="search"
         type="search"
         placeholder="Buscar produto..."
-        class="w-full border-b border-black/20 py-4 outline-none focus:border-gold transition text-sm">
+        class="w-full border-b border-black/20 py-4 outline-none focus:border-gold transition text-sm"
+      >
 
     </div>
 
 
-    <!-- PRODUCTS -->
+    <!-- PRODUTOS -->
 
     <div
       id="products"
-      class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-12">
+      class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-12"
+    ></div>
 
-    </div>
+    <p
+      id="emptyMessage"
+      class="hidden text-center text-sm text-black/50 py-20"
+    >
+      Nenhum produto encontrado.
+    </p>
 
   </div>
 
 </section>
 
 
-<!-- EDITORIAL -->
+<!-- =====================================================
+     EDITORIAL
+===================================================== -->
 
 <section id="editorial" class="bg-ink text-white py-24 md:py-32">
 
@@ -522,7 +552,8 @@
         <img
           src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1400&q=85"
           class="w-full h-full object-cover hover:scale-105 transition duration-700"
-          alt="Editorial de moda">
+          alt="Editorial de moda"
+        >
 
       </div>
 
@@ -534,7 +565,8 @@
           <img
             src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1000&q=85"
             class="w-full h-full object-cover hover:scale-105 transition duration-700"
-            alt="Moda contemporânea">
+            alt="Moda contemporânea"
+          >
 
         </div>
 
@@ -546,9 +578,11 @@
           </p>
 
           <p class="display text-3xl mt-4">
+
             Menos tendência.
             <br>
             <i>Mais identidade.</i>
+
           </p>
 
         </div>
@@ -562,7 +596,9 @@
 </section>
 
 
-<!-- DESTAQUE -->
+<!-- =====================================================
+     DESTAQUE
+===================================================== -->
 
 <section class="py-24 md:py-32 bg-cream">
 
@@ -577,9 +613,11 @@
         </p>
 
         <h2 class="display text-5xl sm:text-6xl mt-4">
+
           Uma peça.
           <br>
           <i>Uma presença.</i>
+
         </h2>
 
         <p class="mt-7 text-sm leading-7 text-black/60 max-w-lg">
@@ -591,10 +629,9 @@
 
         <a
           href="#catalogo"
-          class="inline-block mt-8 bg-ink text-white px-7 py-4 text-[11px] uppercase tracking-[.18em] hover:bg-gold transition">
-
+          class="inline-block mt-8 bg-ink text-white px-7 py-4 text-[11px] uppercase tracking-[.18em] hover:bg-gold transition"
+        >
           Ver catálogo
-
         </a>
 
       </div>
@@ -605,7 +642,8 @@
         <img
           src="https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=1200&q=85"
           class="w-full h-full object-cover"
-          alt="Peça de moda">
+          alt="Peça de moda"
+        >
 
       </div>
 
@@ -616,7 +654,9 @@
 </section>
 
 
-<!-- SOBRE -->
+<!-- =====================================================
+     SOBRE
+===================================================== -->
 
 <section id="sobre" class="py-24 md:py-32">
 
@@ -686,7 +726,9 @@
 </section>
 
 
-<!-- CTA -->
+<!-- =====================================================
+     CTA
+===================================================== -->
 
 <section id="contato" class="bg-ink text-white py-24 md:py-32">
 
@@ -713,10 +755,9 @@
 
     <a
       href="#catalogo"
-      class="inline-block mt-9 bg-white text-ink px-8 py-4 text-[11px] uppercase tracking-[.18em] hover:bg-[#c5a36d] transition">
-
+      class="inline-block mt-9 bg-white text-ink px-8 py-4 text-[11px] uppercase tracking-[.18em] hover:bg-[#c5a36d] transition"
+    >
       Explorar catálogo
-
     </a>
 
   </div>
@@ -726,7 +767,9 @@
 </main>
 
 
-<!-- FOOTER -->
+<!-- =====================================================
+     FOOTER
+===================================================== -->
 
 <footer class="border-t border-black/10 bg-white">
 
@@ -781,11 +824,17 @@
 </footer>
 
 
-<!-- MODAL DO PRODUTO -->
+<!-- =====================================================
+     MODAL
+===================================================== -->
 
 <div
   id="productModal"
-  class="fixed inset-0 z-[100] bg-black/70 p-4 flex items-center justify-center">
+  class="fixed inset-0 z-[100] bg-black/70 p-4 flex items-center justify-center"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="modalName"
+>
 
   <div class="modal-content bg-white max-w-3xl w-full max-h-[90vh] overflow-auto">
 
@@ -795,106 +844,37 @@
         id="modalImage"
         class="w-full h-80 md:h-full object-cover"
         src=""
-        alt="">
+        alt=""
+      >
 
       <div class="p-7 md:p-10">
 
         <button
           id="closeModal"
-          class="float-right w-9 h-9 rounded-full border border-black/10 text-lg">
-
+          type="button"
+          class="float-right w-9 h-9 rounded-full border border-black/10 text-lg hover:bg-black hover:text-white transition"
+          aria-label="Fechar"
+        >
           ×
-
         </button>
 
         <p
           id="modalCategory"
-          class="text-[10px] uppercase tracking-[.25em] text-gold pt-1">
-        </p>
+          class="text-[10px] uppercase tracking-[.25em] text-gold pt-1"
+        ></p>
 
         <h3
           id="modalName"
-          class="display text-4xl mt-4">
-        </h3>
+          class="display text-4xl mt-4"
+        ></h3>
 
         <p
           id="modalDescription"
-          class="text-sm leading-7 text-black/55 mt-5">
-        </p>
+          class="text-sm leading-7 text-black/55 mt-5"
+        ></p>
 
         <p class="text-xs text-black/40 mt-8 border-t border-black/10 pt-5">
-          Produto demonstrativo. As informações podem ser substituídas
-          pelo catálogo real da empresa.
-        </p>
 
-        <button
-          id="closeModalBottom"
-          class="mt-8 w-full bg-ink text-white py-4 text-[10px] uppercase tracking-[.18em]">
-
-          Voltar ao catálogo
-
-        </button>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</div>
-
-
-<script>
-
-/* =========================
-   PRODUTOS
-========================= */
-
-const products = [
-
-  {
-    name: "Camisa Essencial",
-    category: "camisas",
-    group: "feminino",
-    image: "https://images.unsplash.com/photo-1596755389378-c31d21fd1273?auto=format&fit=crop&w=800&q=80",
-    description: "Camisa de corte elegante e acabamento minimalista."
-  },
-
-  {
-    name: "Vestido Noir",
-    category: "vestidos",
-    group: "feminino",
-    image: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=800&q=80",
-    description: "Vestido sofisticado com silhueta contemporânea."
-  },
-
-  {
-    name: "Calça Tailoring",
-    category: "calcas",
-    group: "masculino",
-    image: "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=800&q=80",
-    description: "Alfaiataria contemporânea com corte preciso."
-  },
-
-  {
-    name: "Jaqueta Studio",
-    category: "masculino",
-    group: "masculino",
-    image: "https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=800&q=80",
-    description: "Jaqueta estruturada com estética urbana."
-  },
-
-  {
-    name: "Vestido Sculpt",
-    category: "vestidos",
-    group: "feminino",
-    image: "https://images.unsplash.com/photo-1539008835657-9e8e9680c956?auto=format&fit=crop&w=800&q=80",
-    description: "Modelagem marcante para ocasiões especiais."
-  },
-
-  {
-    name: "Camisa Soft",
-    category: "camisas",
-    group: "feminino",
-    image: "https://images.unsplash.com/photo-1605763240000-7e93b172d754?auto=format&fit=crop&w=800&q=80",
-    description: "P
+          Produto demonstrativo.
+          As informações podem ser substituídas
+          pelo catálog
