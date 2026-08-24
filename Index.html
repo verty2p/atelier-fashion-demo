@@ -874,7 +874,438 @@
         ></p>
 
         <p class="text-xs text-black/40 mt-8 border-t border-black/10 pt-5">
-
           Produto demonstrativo.
           As informações podem ser substituídas
-          pelo catálog
+          pelo catálogo real da empresa.
+
+        </p>
+
+        <button
+          id="closeModalBottom"
+          type="button"
+          class="mt-8 w-full bg-ink text-white py-4 text-[10px] uppercase tracking-[.18em] hover:bg-gold transition"
+        >
+          Voltar ao catálogo
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  /* =====================================================
+     PRODUTOS
+  ===================================================== */
+
+  const products = [
+
+    {
+      name: "Camisa Essencial",
+      category: "camisas",
+      group: "feminino",
+      image: "https://images.unsplash.com/photo-1596755389378-c31d21fd1273?auto=format&fit=crop&w=800&q=80",
+      description: "Camisa de corte elegante e acabamento minimalista."
+    },
+
+    {
+      name: "Vestido Noir",
+      category: "vestidos",
+      group: "feminino",
+      image: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=800&q=80",
+      description: "Vestido sofisticado com silhueta contemporânea."
+    },
+
+    {
+      name: "Calça Tailoring",
+      category: "calcas",
+      group: "masculino",
+      image: "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=800&q=80",
+      description: "Alfaiataria contemporânea com corte preciso."
+    },
+
+    {
+      name: "Jaqueta Studio",
+      category: "masculino",
+      group: "masculino",
+      image: "https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=800&q=80",
+      description: "Jaqueta estruturada com estética urbana."
+    },
+
+    {
+      name: "Vestido Sculpt",
+      category: "vestidos",
+      group: "feminino",
+      image: "https://images.unsplash.com/photo-1539008835657-9e8e9680c956?auto=format&fit=crop&w=800&q=80",
+      description: "Modelagem marcante para ocasiões especiais."
+    },
+
+    {
+      name: "Camisa Soft",
+      category: "camisas",
+      group: "feminino",
+      image: "https://images.unsplash.com/photo-1605763240000-7e93b172d754?auto=format&fit=crop&w=800&q=80",
+      description: "Peça leve e versátil para diferentes combinações."
+    },
+
+    {
+      name: "Calça Essential",
+      category: "calcas",
+      group: "feminino",
+      image: "https://images.unsplash.com/photo-1506629905607-d9b1d6c5b6b8?auto=format&fit=crop&w=800&q=80",
+      description: "Calça de corte limpo e proposta minimalista."
+    },
+
+    {
+      name: "Blazer Classic",
+      category: "masculino",
+      group: "masculino",
+      image: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80",
+      description: "Blazer clássico reinterpretado para um visual contemporâneo."
+    },
+
+    {
+      name: "Vestido Atelier",
+      category: "vestidos",
+      group: "feminino",
+      image: "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?auto=format&fit=crop&w=800&q=80",
+      description: "Vestido elegante com acabamento sofisticado."
+    },
+
+    {
+      name: "Camisa Urban",
+      category: "camisas",
+      group: "masculino",
+      image: "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=800&q=80",
+      description: "Camisa versátil inspirada na estética urbana."
+    },
+
+    {
+      name: "Relógio Minimal",
+      category: "acessorios",
+      group: "masculino",
+      image: "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&w=800&q=80",
+      description: "Acessório minimalista para completar a composição."
+    },
+
+    {
+      name: "Bolsa Atelier",
+      category: "acessorios",
+      group: "feminino",
+      image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=800&q=80",
+      description: "Bolsa elegante pensada para produções contemporâneas."
+    }
+
+  ];
+
+
+  /* =====================================================
+     ELEMENTOS
+  ===================================================== */
+
+  const productsContainer = document.getElementById("products");
+  const emptyMessage = document.getElementById("emptyMessage");
+  const searchInput = document.getElementById("search");
+  const filters = document.querySelectorAll(".filter");
+
+  const modal = document.getElementById("productModal");
+  const modalImage = document.getElementById("modalImage");
+  const modalName = document.getElementById("modalName");
+  const modalCategory = document.getElementById("modalCategory");
+  const modalDescription = document.getElementById("modalDescription");
+
+  const closeModal = document.getElementById("closeModal");
+  const closeModalBottom = document.getElementById("closeModalBottom");
+
+  const menuButton = document.getElementById("menuButton");
+  const mobileMenu = document.getElementById("mobileMenu");
+  const mobileLinks = document.querySelectorAll(".mobile-link");
+
+  let currentFilter = "todos";
+
+
+  /* =====================================================
+     NOMES DAS CATEGORIAS
+  ===================================================== */
+
+  const categoryNames = {
+    feminino: "Feminino",
+    masculino: "Masculino",
+    vestidos: "Vestidos",
+    camisas: "Camisas",
+    calcas: "Calças",
+    acessorios: "Acessórios"
+  };
+
+
+  /* =====================================================
+     RENDERIZAR PRODUTOS
+  ===================================================== */
+
+  function renderProducts() {
+
+    const searchTerm = searchInput.value
+      .trim()
+      .toLowerCase();
+
+    const filteredProducts = products.filter(product => {
+
+      const matchesFilter =
+        currentFilter === "todos" ||
+        product.category === currentFilter ||
+        product.group === currentFilter;
+
+      const matchesSearch =
+        product.name.toLowerCase().includes(searchTerm) ||
+        product.description.toLowerCase().includes(searchTerm) ||
+        product.category.toLowerCase().includes(searchTerm) ||
+        product.group.toLowerCase().includes(searchTerm);
+
+      return matchesFilter && matchesSearch;
+
+    });
+
+
+    productsContainer.innerHTML = "";
+
+
+    if (filteredProducts.length === 0) {
+
+      emptyMessage.classList.remove("hidden");
+
+      return;
+
+    }
+
+
+    emptyMessage.classList.add("hidden");
+
+
+    filteredProducts.forEach((product, index) => {
+
+      const card = document.createElement("article");
+
+      card.className =
+        "product-card cursor-pointer group";
+
+      card.style.opacity = "0";
+      card.style.transform = "translateY(20px)";
+
+      card.innerHTML = `
+
+        <div class="relative overflow-hidden bg-gray-100 aspect-[3/4]">
+
+          <img
+            src="${product.image}"
+            alt="${product.name}"
+            loading="lazy"
+            class="w-full h-full object-cover"
+          >
+
+          <div
+            class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition duration-500"
+          ></div>
+
+          <div
+            class="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition duration-300"
+          >
+
+            <span
+              class="inline-block bg-white px-4 py-2 text-[9px] uppercase tracking-[.15em]"
+            >
+              Ver produto
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="pt-4">
+
+          <p class="text-[9px] uppercase tracking-[.18em] text-black/40">
+            ${categoryNames[product.category] || product.category}
+          </p>
+
+          <h3 class="display text-xl mt-2">
+            ${product.name}
+          </h3>
+
+          <p class="text-xs text-black/45 mt-2 line-clamp-2">
+            ${product.description}
+          </p>
+
+        </div>
+
+      `;
+
+
+      card.addEventListener("click", () => {
+
+        openModal(product);
+
+      });
+
+
+      productsContainer.appendChild(card);
+
+
+      requestAnimationFrame(() => {
+
+        setTimeout(() => {
+
+          card.style.transition =
+            "opacity .5s ease, transform .5s ease";
+
+          card.style.opacity = "1";
+          card.style.transform = "translateY(0)";
+
+        }, index * 60);
+
+      });
+
+    });
+
+  }
+
+
+  /* =====================================================
+     FILTROS
+  ===================================================== */
+
+  filters.forEach(filter => {
+
+    filter.addEventListener("click", () => {
+
+      currentFilter =
+        filter.dataset.filter;
+
+      filters.forEach(button => {
+
+        button.classList.remove("active");
+
+      });
+
+      filter.classList.add("active");
+
+      renderProducts();
+
+    });
+
+  });
+
+
+  /* =====================================================
+     BUSCA
+  ===================================================== */
+
+  searchInput.addEventListener("input", () => {
+
+    renderProducts();
+
+  });
+
+
+  /* =====================================================
+     CATEGORIAS
+  ===================================================== */
+
+  document.querySelectorAll("[data-category-link]")
+    .forEach(link => {
+
+      link.addEventListener("click", () => {
+
+        const category =
+          link.dataset.categoryLink;
+
+        currentFilter = category;
+
+        filters.forEach(button => {
+
+          button.classList.toggle(
+            "active",
+            button.dataset.filter === category
+          );
+
+        });
+
+        setTimeout(() => {
+
+          renderProducts();
+
+        }, 100);
+
+      });
+
+    });
+
+
+  /* =====================================================
+     MODAL
+  ===================================================== */
+
+  function openModal(product) {
+
+    modalImage.src = product.image;
+    modalImage.alt = product.name;
+
+    modalName.textContent =
+      product.name;
+
+    modalCategory.textContent =
+      categoryNames[product.category] || product.category;
+
+    modalDescription.textContent =
+      product.description;
+
+    modal.classList.add("open");
+
+    document.body.classList.add("no-scroll");
+
+  }
+
+
+  function closeProductModal() {
+
+    modal.classList.remove("open");
+
+    document.body.classList.remove("no-scroll");
+
+  }
+
+
+  closeModal.addEventListener(
+    "click",
+    closeProductModal
+  );
+
+
+  closeModalBottom.addEventListener(
+    "click",
+    closeProductModal
+  );
+
+
+  modal.addEventListener("click", event => {
+
+    if (event.target === modal) {
+
+      closeProductModal();
+
+    }
+
+  });
+
+
+  document.addEventListener("keydown",
